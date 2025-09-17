@@ -151,3 +151,18 @@
     display: none;
   }
 }
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .sidebar-fixed {
+    position: fixed !important;
+    z-index: 50;
+  }
+}
+
+/* Ensure content doesn't get cut off on mobile */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 4rem;
+  }
+}
