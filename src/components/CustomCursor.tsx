@@ -50,10 +50,11 @@ export const CustomCursor = () => {
     const animate = (currentTime: number) => {
       if (!ctx || !canvas) return;
 
-      // Clear canvas with slight trail effect
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      // Fade previous frame for trail, keep canvas transparent
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = 'source-over';
 
       // Create new particles (throttled)
       if (currentTime - lastParticleTime.current > 16) { // ~60fps
