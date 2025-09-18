@@ -1,30 +1,33 @@
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useRef } from 'react';
 import { Sidebar } from './Sidebar';
 import { AboutSection } from './sections/AboutSection';
 import { ExperienceSection } from './sections/ExperienceSection';
 import { ProjectsSection } from './sections/ProjectsSection';
 import { SkillsSection } from './sections/SkillsSection';
 import { EducationSection } from './sections/EducationSection';
-import { CustomCursor } from './CustomCursor';
+import {ProfileCard} from './Profile'
+import FluidCursor from './FluidCursor';
+import Footer from './sections/Footer';
+
 
 export const ResumeLayout = () => {
   const [activeSection, setActiveSection] = useState('about');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mainContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
+      if (!mainContentRef.current) return;
+
       const sections = ['about', 'experience', 'projects', 'skills', 'education'];
-      const mainContent = document.querySelector('[data-main-content]');
-      if (!mainContent) return;
-      
-      const scrollPosition = mainContent.scrollTop + 100;
+      const scrollPosition = mainContentRef.current.scrollTop + 120;
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
           const height = element.offsetHeight;
-          
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
             setActiveSection(section);
             break;
@@ -33,68 +36,49 @@ export const ResumeLayout = () => {
       }
     };
 
-    const mainContent = document.querySelector('[data-main-content]');
-    if (mainContent) {
-      mainContent.addEventListener('scroll', handleScroll);
-      return () => mainContent.removeEventListener('scroll', handleScroll);
-    }
+    const mainContent = mainContentRef.current;
+    mainContent?.addEventListener('scroll', handleScroll);
+    return () => mainContent?.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    const mainContent = document.querySelector('[data-main-content]');
-    if (element && mainContent) {
-      const offsetTop = element.offsetTop - 80;
-      mainContent.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    if (element && mainContentRef.current) {
+      mainContentRef.current.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
     }
     setActiveSection(sectionId);
-    setIsMobileMenuOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-background flex overflow-hidden">
-      <CustomCursor />
-      
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden" 
-          onClick={() => setIsMobileMenuOpen(false)}
+    <div className="h-screen bg-background flex flex-col lg:flex-row overflow-hidden">
+      <FluidCursor />
+
+      {/* Sidebar for large screens */}
+      <aside className="hidden lg:block w-[40%] h-screen overflow-y-auto">
+        <Sidebar
+          activeSection={activeSection}
+          onSectionChange={scrollToSection}
+          isMobileOpen={false}
         />
-      )}
-      
-      {/* Sidebar */}
-      <Sidebar 
-        activeSection={activeSection} 
-        onSectionChange={scrollToSection}
-        isMobileOpen={isMobileMenuOpen}
-        onMobileToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-      />
-      
+      </aside>
+
       {/* Main Content */}
-      <main 
-        className="flex-1 overflow-y-auto"
-        data-main-content
-        style={{ height: '100vh' }}
+      <main
+        ref={mainContentRef}
+        className="flex-1 h-screen overflow-y-auto"
       >
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden fixed top-4 left-4 z-30">
-          <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 bg-card rounded-lg shadow-medium border border-section-border"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+        {/* Sidebar rendered at top for small screens */}
+        <div className="lg:hidden">
+            <ProfileCard size="large" showBio={true} />
         </div>
-        
-        <div className="max-w-4xl mx-auto px-6 lg:px-12 py-16 lg:py-20 space-y-16">
+
+        <div className="max-w-4xl mx-auto px-6 lg:px-12 py-8 lg:py-12 space-y-16">
           <AboutSection />
           <ExperienceSection />
           <ProjectsSection />
           <SkillsSection />
           <EducationSection />
+          <Footer />
         </div>
       </main>
     </div>

@@ -1,17 +1,75 @@
+// export const AboutSection = () => {
+//   return (
+//     <section id="about" className="animate-fade-in">
+//       <h2 className="section-heading">About</h2>
+//       <div className="prose max-w-none">
+//         <p className="text-text-secondary leading-relaxed mb-4">
+//           Full-stack developer with experience delivering scalable applications that
+//           combine modern frontend design with reliable backend systems. Skilled in
+//           creating smooth user experiences and optimizing performance across the stack.
+//         </p>
+//         <p className="text-text-secondary leading-relaxed mb-4">
+//           Work highlights include building a SaaS-based LMS-LOS platform at
+//           <strong> Arthmate</strong> using Next.js, Supabase, AWS, and Redis, and
+//           developing real-time messaging platforms at <strong>Brimming Grace</strong>
+//           with React, Django, and PostgreSQL. Also integrated payment gateways and
+//           led a small frontend team to production-ready results.
+//         </p>
+//         <p className="text-text-secondary leading-relaxed mb-4">
+//           Proficient in React, Next.js, Redux, Tailwind CSS, Node.js, Django, and
+//           PostgreSQL, with additional experience in Supabase, AWS, Docker, and AI/ML
+//           tools such as LangChain, FAISS, and OpenAI APIs. Comfortable collaborating
+//           with cross-functional teams and adapting quickly to new technologies.
+//         </p>
+//         <p className="text-text-secondary leading-relaxed mb-4">
+//           Passionate about solving complex problems, building SaaS products that
+//           deliver measurable business impact, and constantly learning to stay ahead
+//           in the evolving tech landscape.
+//         </p>
+//         <p className="text-text-secondary leading-relaxed text-orange-500 font-semibold">
+//           Outside of code, I love <span className="underline decoration-wavy">coding</span>, <span className="underline decoration-wavy">music</span>, and <span className="underline decoration-wavy">memes</span> 🎵💻😂
+//         </p>
+//       </div>
+//     </section>
+//   );
+// };
+
+import { Download } from "lucide-react";
+import resumePDF from "@/assets/yash_resume_sde2.pdf";
+
 export const AboutSection = () => {
   return (
     <section id="about" className="animate-fade-in">
-      <h2 className="section-heading">About</h2>
+      {/* Heading with button */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6">
+        <h2 className="section-heading">About Me</h2>
+        <a
+          href={resumePDF}
+          download
+          className="mt-4 sm:mt-0 inline-flex items-center gap-2 px-5 py-2 bg-orange-500 text-white rounded-xl font-semibold shadow-lg hover:bg-orange-600 hover:scale-105 transition-transform transition-colors duration-300 relative overflow-hidden"
+        >
+          Download CV
+          <Download className="w-5 h-5 animate-bounce ml-1" />
+          {/* Glow effect */}
+          <span className="absolute inset-0 rounded-xl shadow-[0_0_20px_rgba(255,165,0,0.5)] opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
+        </a>
+      </div>
+
       <div className="prose max-w-none">
         <p className="text-text-secondary leading-relaxed mb-4">
-          Software Engineer with 2.5+ years of experience building scalable, secure, and 
-          performance-optimized web applications. Currently contributing to SaaS-based LMS-LOS 
-          platform using Next.js and Supabase.
+          I'm a full-stack developer passionate about building scalable and user-friendly applications. I enjoy combining thoughtful frontend design with robust backend systems to deliver smooth experiences.
+        </p>
+        <p className="text-text-secondary leading-relaxed mb-4">
+          Some highlights of my work include developing a SaaS-based LMS-LOS platform at <strong>Arthmate</strong> using Next.js, Supabase, AWS, and Redis, and building real-time messaging platforms at <strong>Brimming Grace</strong> with React, Django, and PostgreSQL. I’ve also integrated payment gateways and led a small frontend team to production-ready results.
+        </p>
+        <p className="text-text-secondary leading-relaxed mb-4">
+          My toolkit includes React, Next.js, Redux, Tailwind CSS, Node.js, Django, PostgreSQL, and additional experience with Supabase, AWS, Docker, and AI/ML tools such as LangChain, FAISS, and OpenAI APIs. I’m comfortable collaborating with cross-functional teams and quickly adapting to new technologies.
+        </p>
+        <p className="text-text-secondary leading-relaxed mb-4">
+          Beyond development, I enjoy <span className="underline decoration-wavy text-orange-500">coding</span>, <span className="underline decoration-wavy text-orange-500">music</span>, and <span className="underline decoration-wavy text-orange-500">memes</span> 🎵💻😂 — a mix that keeps my creativity flowing.
         </p>
         <p className="text-text-secondary leading-relaxed">
-          Proven track record in fintech and B2B messaging domains, with expertise in frontend 
-          architecture, REST API design, real-time communication, and cloud-native development. 
-          Passionate about creating solutions that directly impact user experience and business growth.
+          I strive to solve meaningful problems, build impactful products, and continuously grow as a developer.
         </p>
       </div>
     </section>
