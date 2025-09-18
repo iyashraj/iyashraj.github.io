@@ -5,7 +5,7 @@ const skillCategories = [
   },
   {
     category: 'Frontend',
-    skills: ['React.js', 'Next.js (App Router)', 'Redux', 'Tailwind CSS']
+    skills: ['React.js', 'Next.js', 'Redux', 'Tailwind CSS']
   },
   {
     category: 'Backend',

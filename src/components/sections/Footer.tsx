@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full text-gray-800 py-12 px-6">
+    <footer className="w-full text-gray-800 py-0 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row flex-wrap justify-between items-start md:items-center gap-8">
 
         {/* Connect Section */}

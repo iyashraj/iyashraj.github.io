@@ -1,4 +1,4 @@
-import { GraduationCap, Calendar } from 'lucide-react';
+import { GraduationCap, Calendar, MapPin, Percent } from 'lucide-react';
 
 export const EducationSection = () => {
   return (
@@ -13,12 +13,20 @@ export const EducationSection = () => {
             <h3 className="text-lg font-semibold text-text-primary mb-1">
               Bachelor of Computer Applications (BCA)
             </h3>
-            <p className="text-accent-blue font-medium mb-2">
+            <p className="text-accent-blue font-medium mb-1">
               Indira Gandhi National Open University
             </p>
-            <div className="flex items-center text-sm text-text-muted">
+            <div className="flex items-center text-sm text-text-muted mb-1">
+              <MapPin className="w-4 h-4 mr-1" />
+              <span>New Delhi, Delhi, India</span>
+            </div>
+            <div className="flex items-center text-sm text-text-muted mb-2">
               <Calendar className="w-4 h-4 mr-1" />
               <span>2018 – 2022</span>
+            </div>
+            <div className="flex items-center text-sm text-text-muted">
+              <Percent className="w-4 h-4 mr-1" />
+              <span>Marks: 63%</span>
             </div>
           </div>
         </div>

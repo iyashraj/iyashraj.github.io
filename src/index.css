@@ -9,47 +9,55 @@
     /* Core Brand Colors */
     --background: 210 20% 98%;
     --foreground: 210 20% 12%;
-    
+
     /* Professional Accent Colors */
     --accent-blue: 210 100% 50%;
     --accent-blue-light: 210 100% 60%;
     --accent-blue-dark: 210 100% 40%;
-    
+
     /* Text Hierarchy */
     --text-primary: 210 20% 15%;
     --text-secondary: 210 15% 45%;
     --text-muted: 210 10% 65%;
-    
+
     /* Interactive Elements */
     --link-default: 210 100% 50%;
     --link-hover: 210 100% 40%;
     --link-active: 210 100% 35%;
-    
+
     /* Sidebar Colors */
     --sidebar-bg: 0 0% 100%;
     --sidebar-border: 210 20% 90%;
     --sidebar-nav-active: 210 100% 50%;
     --sidebar-nav-hover: 210 100% 95%;
-    
+
     /* Content Sections */
     --section-border: 210 20% 90%;
     --card-bg: 0 0% 100%;
     --card-shadow: 210 20% 15%;
-    
+
     /* Status Colors */
     --success: 142 76% 36%;
     --warning: 38 92% 50%;
     --error: 0 84% 60%;
-    
+
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 50%), hsl(210 100% 60%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
-    
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(210 100% 50%),
+      hsl(210 100% 60%)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      hsl(0 0% 100%),
+      hsl(210 20% 98%)
+    );
+
     /* Shadows */
     --shadow-soft: 0 2px 8px -2px hsl(210 20% 15% / 0.1);
     --shadow-medium: 0 4px 12px -4px hsl(210 20% 15% / 0.15);
     --shadow-strong: 0 8px 24px -8px hsl(210 20% 15% / 0.2);
-    
+
     /* Animations */
     --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -86,10 +94,11 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", sans-serif;
     /* cursor: none; Hide default cursor for custom cursor effect */
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -100,31 +109,52 @@
   .nav-link {
     @apply relative block py-3 text-text-secondary transition-colors duration-200 hover:text-accent-blue;
   }
-  
+
   .nav-link.active {
     @apply text-accent-blue font-medium;
   }
-  
+
   .nav-link.active::after {
-    content: '';
+    content: "";
     @apply absolute left-0 bottom-0 w-full h-0.5 bg-accent-blue;
   }
-  
-  /* Professional Headings */
+
   .section-heading {
-    @apply text-xl font-semibold text-text-primary mb-6 tracking-tight;
+    @apply text-xl font-semibold text-text-primary mb-6 tracking-tight relative inline-block;
   }
-  
+
+  .section-heading::after {
+    content: "";
+    @apply block h-1 w-16 mt-1 rounded-lg;
+    background: linear-gradient(
+      90deg,
+      #f97316,
+      #facc15,
+      #f97316
+    ); /* orange-yellow gradient */
+    background-size: 200% 100%;
+    animation: slideGradient 2s linear infinite;
+  }
+
+  @keyframes slideGradient {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
   /* Experience Card */
   .experience-card {
     @apply mb-8 pb-8 border-b border-section-border last:border-b-0;
   }
-  
+
   /* Project Card */
   .project-card {
     @apply mb-6 p-4 rounded-lg bg-card shadow-soft hover:shadow-medium transition-shadow duration-200;
   }
-  
+
   /* Skill Tag */
   .skill-tag {
     @apply inline-block px-3 py-1 mr-2 mb-2 text-sm bg-accent rounded-md text-accent-foreground;
