@@ -5,7 +5,7 @@ export const AboutSection = () => {
   return (
     <section id="about" className="animate-fade-in">
       {/* Heading with button */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 align-baseline">
         <h2 className="section-heading">About Me</h2>
         <a
           href={resumePDF}

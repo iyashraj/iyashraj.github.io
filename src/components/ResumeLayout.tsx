@@ -51,7 +51,7 @@ export const ResumeLayout = () => {
 
   return (
     <div className="h-screen bg-background flex flex-col lg:flex-row overflow-hidden">
-      <FluidCursor />
+      {/* <FluidCursor /> */}
 
       {/* Sidebar for large screens */}
       <aside className="hidden lg:block w-[40%] h-screen overflow-y-auto">
